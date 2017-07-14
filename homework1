@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+   <head>
+    <title>JSON API AND AJAX</title>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script  type ="text/javascript" src ="js\homework1.js"></script>
+    </head>
+     <body>
+ <button id="">click here</button>
+
+
+     </body>
+</html>
