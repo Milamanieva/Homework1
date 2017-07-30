@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+   <head>
+    <title>Movies</title>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script  type ="text/javascript" src ="js\homework1.js"></script>
+    </head>
+       <body>
+         <h2>Movie collection</h2>
+         <div id="movies"></div>
+         <button id="GetMovies"> Click here and get movies
+         </button>
+         <div class = 'movie'>
+           <h3 class='title'></h3>
+           <p class='story'></p>
+         </div>
+       </body>
+</html>
+<script>
+  $(document).ready(function() {
+
+    $("#getMovies").on("click", function(){
+    $.getJSON("movies_20.json", function(json) {
+    var html ="";
+    json.forEach (function(val){
+html += "<div class='movie'>";
+html += "<h3 class='title'>" + val.title +" (" + val.year+)</h3>;
+html += "<img src='" + val.posterurl + "' title='" + val.storyline + " />";
+html += "</div>";
+});
+$("#movies").html(html);
+});
+//template//
+var tamplate = $('#movie1').html();
+$ ("#getMovies").on("click", function() {
+ $.getJSON("movies_20", function (json) {
+   json.forEach (function (val) {
+    var movie1 = $(template).clone();
+    movie1.find (".moviename").text(val.title);
+    movie1.find (".story"). text (val.storyline);
+    $(#movies).append($(movie1));
+  });
+});
+});
+
+//input//
+$(function(){
+  var $input = $ ("input [name='keyword']"),
+  $context= $("#movies");
+  $input.on("input", function() {
+  var term = $(this).val();
+  $context.show().unmark();
+  if (term){
+    $context.mark(term, {
+      done: function(){
+      $context.not(":has(mark)").hide();
+      }
+    });
+  }
+});
+});
+
+</script>
+</html>
